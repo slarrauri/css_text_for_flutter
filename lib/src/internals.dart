@@ -30,11 +30,11 @@ class _Tag {
 /// methods required to convert HTML content into Flutter widgets
 class Parser {
   var _stack = [];
-  var _events;
-  BuildContext _context;
-  Function _linksCallback;
+  late var _events;
+  late BuildContext _context;
+  Function? _linksCallback;
 
-  Parser(BuildContext context, String data, {Function linksCallback}) {
+  Parser(BuildContext context, String data, {Function? linksCallback}) {
     _events = xmle.parseEvents(data);
     _context = context;
     if (linksCallback != null) _linksCallback = linksCallback;
@@ -93,7 +93,7 @@ class Parser {
           recognizer: TapGestureRecognizer()
             ..onTap = () {
               if (_linksCallback != null)
-                _linksCallback(link);
+                _linksCallback!(link);
               else
                 print("Add a link callback to visit $link");
             });
@@ -164,7 +164,7 @@ class Parser {
 
       if (event is xmle.XmlTextEvent) {
         final currentSpan = _handleText(event.text);
-        if (currentSpan.text.isNotEmpty) {
+        if (currentSpan.text!.isNotEmpty) {
           spans.add(currentSpan);
         }
       }
@@ -174,6 +174,6 @@ class Parser {
     if (spans[spans.length - 1].text == '\n') {
       spans.removeLast();
     }
-    return spans;
+    return spans as List<TextSpan>;
   }
 }

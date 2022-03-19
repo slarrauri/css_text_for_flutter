@@ -73,7 +73,7 @@ class StyleGenUtils {
     return textStyle;
   }
 
-  static int _convertColor(String value) {
+  static int? _convertColor(String value) {
     var colorHex = 0xff000000;
     if (value.startsWith("#")) {
       if (value.length == 7)
@@ -96,13 +96,13 @@ class StyleGenUtils {
 
   /// Creates a [TextStyle] to handle CSS color
   static TextStyle addFontColor(TextStyle textStyle, String value) {
-    return textStyle.copyWith(color: Color(_convertColor(value)));
+    return textStyle.copyWith(color: Color(_convertColor(value)!));
   }
 
   /// Creates a [TextStyle] to handle CSS background
   static TextStyle addBgColor(TextStyle textStyle, String value) {
     Paint p = Paint();
-    p.color = Color(_convertColor(value));
+    p.color = Color(_convertColor(value)!);
     return textStyle.copyWith(background: p);
   }
 
