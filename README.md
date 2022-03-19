@@ -1,6 +1,9 @@
 # CSS Text
 
 This library makes it easy for you to convert HTML and CSS content into `RichText` widgets. It supports most CSS properties that are relevant to text content, except those related to text alignment.
+Created by: Ashraff Hathibelagal
+Updated by: Sebastian Larrauri 
+See changelog.md for changes. 
 
 Here's some sample HTML content with inline CSS styles:
 
